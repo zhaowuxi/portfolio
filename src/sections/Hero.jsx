@@ -38,7 +38,7 @@ export default function Hero() {
       {/* Video Background */}
       <div className="hero__bg">
         <video autoPlay muted loop playsInline>
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          <source src="videos/hero-bg.mp4" type="video/mp4" />
         </video>
         <div className="hero__frost" ref={frostRef} />
       </div>
