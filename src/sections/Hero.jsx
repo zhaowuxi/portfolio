@@ -6,9 +6,16 @@ export default function Hero() {
   useEffect(() => {
     const frost = frostRef.current
     if (!frost) return
-    let targetX = -100, targetY = -100
-    let currentX = -100, currentY = -100
+    let targetX = -200, targetY = -200
+    let currentX = -200, currentY = -200
     let raf = null
+
+    const apply = () => {
+      // 直接写入完整 mask，不用 CSS 变量，兼容性最好
+      const mask = `radial-gradient(circle 140px at ${currentX}px ${currentY}px, transparent 30%, black 100%)`
+      frost.style.webkitMaskImage = mask
+      frost.style.maskImage = mask
+    }
 
     const onMove = (e) => {
       targetX = e.clientX
@@ -19,12 +26,12 @@ export default function Hero() {
       // lerp — smooth follow with delay
       currentX += (targetX - currentX) * 0.08
       currentY += (targetY - currentY) * 0.08
-      frost.style.setProperty('--mx', `${currentX}px`)
-      frost.style.setProperty('--my', `${currentY}px`)
+      apply()
       raf = requestAnimationFrame(animate)
     }
 
     window.addEventListener('mousemove', onMove, { passive: true })
+    apply()
     animate()
 
     return () => {
