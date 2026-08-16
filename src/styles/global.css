@@ -352,8 +352,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: rgba(10, 10, 10, 0.50);
   backdrop-filter: blur(8px) saturate(120%);
   -webkit-backdrop-filter: blur(8px) saturate(120%);
-  mask-image: radial-gradient(circle 120px at var(--mx, -100px) var(--my, -100px), transparent 0%, transparent 30%, black 100%);
-  -webkit-mask-image: radial-gradient(circle 120px at var(--mx, -100px) var(--my, -100px), transparent 0%, transparent 30%, black 100%);
+  /* 兼容性更强的径向透明挖孔 */
+  -webkit-mask-image: radial-gradient(circle 120px at var(--mx, 50%) var(--my, 50%), transparent 30%, black 100%);
+  mask-image: radial-gradient(circle 120px at var(--mx, 50%) var(--my, 50%), transparent 30%, black 100%);
 }
 
 /* Subtle gold ambient */
