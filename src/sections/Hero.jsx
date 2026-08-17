@@ -43,10 +43,11 @@ export default function Hero() {
     <section className="hero" id="home">
       {/* Video Background — 双层：底层磨砂，上层清晰挖孔 */}
       <div className="hero__bg">
-        <video autoPlay muted loop playsInline>
-          <source src="videos/hero-bg.mp4" type="video/mp4" />
-        </video>
-        <div className="hero__frost" />
+        <div className="hero__frost">
+          <video autoPlay muted loop playsInline>
+            <source src="videos/hero-bg.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="hero__clear" ref={clearRef}>
           <video autoPlay muted loop playsInline>
             <source src="videos/hero-bg.mp4" type="video/mp4" />

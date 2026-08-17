@@ -349,9 +349,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero__frost {
   position: absolute;
   inset: 0;
-  background: rgba(10, 10, 10, 0.50);
-  backdrop-filter: blur(8px) saturate(120%);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+.hero__frost video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 直接对视频用 filter，兼容性最好，一定能生效 */
+  filter: blur(10px) brightness(0.45) saturate(0.7);
+  -webkit-filter: blur(10px) brightness(0.45) saturate(0.7);
 }
 
 /* 清晰层 — 只通过 clip-path 圆形挖孔显示鼠标周围区域 */
