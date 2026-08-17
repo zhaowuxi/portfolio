@@ -11,8 +11,8 @@ export default function Hero() {
     let raf = null
 
     const apply = () => {
-      // 直接写入完整 mask，不用 CSS 变量，兼容性最好
-      const mask = `radial-gradient(circle 140px at ${currentX}px ${currentY}px, transparent 30%, black 100%)`
+      // 直接写入完整 mask，用 white（显示）确保 alpha/luminance 语义都正确
+      const mask = `radial-gradient(circle 140px at ${currentX}px ${currentY}px, transparent 30%, white 100%)`
       frost.style.webkitMaskImage = mask
       frost.style.maskImage = mask
     }
