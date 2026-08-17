@@ -1,20 +1,19 @@
 import { useEffect, useRef } from 'react'
 
 export default function Hero() {
-  const frostRef = useRef(null)
+  const clearRef = useRef(null)
 
   useEffect(() => {
-    const frost = frostRef.current
-    if (!frost) return
-    let targetX = -200, targetY = -200
-    let currentX = -200, currentY = -200
+    const clear = clearRef.current
+    if (!clear) return
+    let targetX = window.innerWidth / 2, targetY = window.innerHeight / 2
+    let currentX = targetX, currentY = targetY
     let raf = null
 
     const apply = () => {
-      // 直接写入完整 mask，用 white（显示）确保 alpha/luminance 语义都正确
-      const mask = `radial-gradient(circle 140px at ${currentX}px ${currentY}px, transparent 30%, white 100%)`
-      frost.style.webkitMaskImage = mask
-      frost.style.maskImage = mask
+      // 用 clip-path 圆形挖孔（兼容性远好于 mask-image）
+      clear.style.webkitClipPath = `circle(140px at ${currentX}px ${currentY}px)`
+      clear.style.clipPath = `circle(140px at ${currentX}px ${currentY}px)`
     }
 
     const onMove = (e) => {
@@ -42,12 +41,17 @@ export default function Hero() {
 
   return (
     <section className="hero" id="home">
-      {/* Video Background */}
+      {/* Video Background — 双层：底层磨砂，上层清晰挖孔 */}
       <div className="hero__bg">
         <video autoPlay muted loop playsInline>
           <source src="videos/hero-bg.mp4" type="video/mp4" />
         </video>
-        <div className="hero__frost" ref={frostRef} />
+        <div className="hero__frost" />
+        <div className="hero__clear" ref={clearRef}>
+          <video autoPlay muted loop playsInline>
+            <source src="videos/hero-bg.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
 
       {/* Top bar — corner labels */}
