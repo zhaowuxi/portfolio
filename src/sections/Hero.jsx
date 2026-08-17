@@ -11,9 +11,11 @@ export default function Hero() {
     let raf = null
 
     const apply = () => {
-      // 用 clip-path 圆形挖孔（兼容性远好于 mask-image）
-      clear.style.webkitClipPath = `circle(140px at ${currentX}px ${currentY}px)`
-      clear.style.clipPath = `circle(140px at ${currentX}px ${currentY}px)`
+      // 用 mask 径向渐变做羽化：中心实心清晰，向外逐渐过渡到透明（露出模糊底层）
+      // 用 white（显示）语义，兼容 alpha / luminance 两种 mask 模式
+      const mask = `radial-gradient(circle 160px at ${currentX}px ${currentY}px, white 0%, white 40%, transparent 72%)`
+      clear.style.webkitMaskImage = mask
+      clear.style.maskImage = mask
     }
 
     const onMove = (e) => {

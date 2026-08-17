@@ -359,12 +359,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   -webkit-filter: blur(10px) brightness(0.45) saturate(0.7);
 }
 
-/* 清晰层 — 只通过 clip-path 圆形挖孔显示鼠标周围区域 */
+/* 清晰层 — 用 mask 羽化：中心高清，向外渐变过渡到模糊底层 */
 .hero__clear {
   position: absolute;
   inset: 0;
-  clip-path: circle(140px at 50% 50%);
-  -webkit-clip-path: circle(140px at 50% 50%);
+  -webkit-mask-image: radial-gradient(circle 160px at 50% 50%, white 0%, white 40%, transparent 72%);
+  mask-image: radial-gradient(circle 160px at 50% 50%, white 0%, white 40%, transparent 72%);
 }
 .hero__clear video {
   width: 100%;
